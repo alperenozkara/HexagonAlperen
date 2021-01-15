@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AFABD390-C6A0-3720-AF87-409013B71B32}</ProjectGuid>
+    <ProjectGuid>{876E7FBB-F589-5834-699C-6F0884F82CA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -59,29 +59,30 @@
      <Compile Include="Assets\Scripts\game_status.cs" />
      <Compile Include="Assets\Scripts\grid_tile.cs" />
      <Compile Include="Assets\Scripts\hex_identity.cs" />
+     <Compile Include="Assets\Scripts\match_detector.cs" />
+     <Compile Include="Assets\Scripts\selector_collision.cs" />
      <Compile Include="Assets\Scripts\snap_deleter.cs" />
      <Compile Include="Assets\Scripts\spawn_selector.cs" />
-     <Compile Include="Assets\selector_collision.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -261,13 +262,13 @@
  <HintPath>C:/Program Files/Unity/Hub/Editor/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/Hexagon-AlperenOzkara/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/GitHub/Hexagon-AlperenOzkara/HexagonAlperenOzkara/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

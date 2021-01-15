@@ -8,6 +8,7 @@ TagManager:
   - snap_destroyer
   - game_status
   - hex
+  - tile
   layers:
   - Default
   - TransparentFX

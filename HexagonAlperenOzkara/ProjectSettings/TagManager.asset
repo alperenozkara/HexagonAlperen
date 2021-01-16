@@ -9,6 +9,8 @@ TagManager:
   - game_status
   - hex
   - tile
+  - hexSpawner
+  - board
   layers:
   - Default
   - TransparentFX

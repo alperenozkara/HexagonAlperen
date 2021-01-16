@@ -21,6 +21,7 @@ public class spawn_selector : MonoBehaviour
     
     void Update()
     {
+        //spawn hex selector for dot degress
         switch (gameObject.name)
         {
             case "0":
@@ -46,21 +47,30 @@ public class spawn_selector : MonoBehaviour
     }
     void OnMouseDown()
     {
-        for (int i = 0; i < 3; i++) { 
-        
-        }
-        if (!gs.is_selector_active)
+        //spawn selector
+        if (gameObject.GetComponent<match_detector>().hexs.Count == 3)
         {
-            if (!reverted)
+            if (gs.is_filling == false)
             {
-                SpawnSelector();
-                
-            }
-            if (reverted)
-            {
-               
-                SpawnSelector_Revert();
-                
+                for (int i = 0; i < 3; i++)
+                {
+
+                }
+                if (!gs.is_selector_active)
+                {
+                    if (!reverted)
+                    {
+                        //spawn normal selector
+                        SpawnSelector();
+
+                    }
+                    if (reverted)
+                    {
+                        //spawn revert selector
+                        SpawnSelector_Revert();
+
+                    }
+                }
             }
         }
     }

@@ -9,12 +9,13 @@ public class game_board : MonoBehaviour
     private float x_direction = 0.611f;
     
     public GameObject grid_tile_Prefab;
-
+    public List<GameObject> newHexs;
     private grid_tile[,] all_Tiles;
     void Start()
     {
         all_Tiles = new grid_tile[width, height];
         SetupArenaTiles();
+       
     }
 
     
@@ -22,7 +23,7 @@ public class game_board : MonoBehaviour
     {
         
     }
-
+    //Fill the area with your desire
     private void SetupArenaTiles()
     {
         for (float x = 0; x < width; x++) {
@@ -47,8 +48,12 @@ public class game_board : MonoBehaviour
  
                 GameObject tile  = Instantiate(grid_tile_Prefab, new Vector2(x_pos,y_pos), Quaternion.identity) as GameObject;
                 tile.transform.parent = this.transform;
+                
                 tile.name = (x+1).ToString() + y.ToString();
             }
         }
     }
+    
+
+    
 }

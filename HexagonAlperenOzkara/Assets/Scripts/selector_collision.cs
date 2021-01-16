@@ -47,12 +47,18 @@ public class selector_collision : MonoBehaviour
    
     void Update()
     {
+        //is selector stops destroy selector
+        if (gs.is_selector_active == false) {
+            Destroy(gameObject);
+        }
 
+        //if angle = 360  and there is no match destroy selector
         if (angle == 360)
         {
             gs.is_selector_active = false;
             Destroy(gameObject);
         }
+        //if is matched
         if (gs.is_matched == true) {
             
             Destroy(gameObject);
@@ -60,30 +66,31 @@ public class selector_collision : MonoBehaviour
 
         if (rotating)
         {
-            RotateSelector();
-           // gs.is_selector_rotating = true;
+            if (gs.is_matched == false)
+            {
+                RotateSelector();
+            }
+          
 
         }
-        else {
-            //gs.is_selector_rotating = false;
-        }
-        
-       
-
+       //rotate controls
         if (gs.is_selector_active)
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                //getting mouse first position
                 mouseX = Camera.main.ScreenToViewportPoint(Input.mousePosition).x;
             }
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
+                //if mouse going right
                 if (Camera.main.ScreenToViewportPoint(Input.mousePosition).x > mouseX)
                 {
                     right = true;
                     rotating = true;
 
                 }
+                //if mouse going left
                 else if (Camera.main.ScreenToViewportPoint(Input.mousePosition).x < mouseX)
                 {
                     left = true;
@@ -97,6 +104,7 @@ public class selector_collision : MonoBehaviour
        
 
     }
+    //select 3 hex's for turn
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "hex")
@@ -111,6 +119,8 @@ public class selector_collision : MonoBehaviour
    
 
     private void RotateSelector() {
+
+        //if there is 3 hex's we can turn
         if (hexs[0] != null && hexs[1] != null && hexs[2] != null)
         {
             if (hexs.Count == 3 && !gs.is_matched)
@@ -119,9 +129,10 @@ public class selector_collision : MonoBehaviour
 
                 if (right)
                 {
-
+                    //turning right
                     if (angle < next_zAngle)
                     {
+                        gs.is_selector_rotating = true;
                         transform.RotateAround(transform.position, Vector3.forward, speed);
                         hexs[0].transform.RotateAround(centerHexGroup, Vector3.forward, speed);
                         // hexs[0].transform.eulerAngles += new Vector3(0, 0, speed);
@@ -130,13 +141,13 @@ public class selector_collision : MonoBehaviour
                         hexs[2].transform.RotateAround(centerHexGroup, Vector3.forward, speed);
                         // hexs[2].transform.eulerAngles += new Vector3(0, 0, speed);
                         angle += speed;
-
+                        
                         if (angle == next_zAngle)
                         {
 
                             rotating = false;
                             gs.is_selector_rotating = false;
-                            Invoke("turnAgain", 0.1f);
+                            Invoke("turnAgain", 0.3f);
 
                         }
                     }
@@ -147,8 +158,10 @@ public class selector_collision : MonoBehaviour
                 }
                 if (left)
                 {
+                    //turning left
                     if (angle < next_zAngle)
                     {
+                        gs.is_selector_rotating = true;
                         transform.RotateAround(transform.position, Vector3.forward, -speed);
                         hexs[0].transform.RotateAround(centerHexGroup, Vector3.forward, -speed);
                        // hexs[0].transform.eulerAngles += new Vector3(0, 0, -speed);
@@ -157,12 +170,13 @@ public class selector_collision : MonoBehaviour
                         hexs[2].transform.RotateAround(centerHexGroup, Vector3.forward, -speed);
                         //hexs[2].transform.eulerAngles += new Vector3(0, 0, -speed);
                         angle += speed;
+                        
                         if (angle == next_zAngle)
                         {
 
                             rotating = false;
                             gs.is_selector_rotating = false;
-                            Invoke("turnAgain", 0.1f);
+                            Invoke("turnAgain", 0.3f);
 
 
                         }
@@ -175,7 +189,7 @@ public class selector_collision : MonoBehaviour
             }
         }
     }
-    
+    //turn again after 120 degress
     private void turnAgain()
     {
         next_zAngle += 120f;

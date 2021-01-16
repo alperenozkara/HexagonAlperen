@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 3147142359729435067}
   - component: {fileID: -6798930148504247448}
   - component: {fileID: -5844887647141056113}
-  - component: {fileID: 1930677468063670239}
   - component: {fileID: 5762589847869764873}
-  - component: {fileID: 2237054087300105793}
+  - component: {fileID: 984691934817175097}
+  - component: {fileID: -471387281809646332}
   m_Layer: 0
   m_Name: snapDot
   m_TagString: Untagged
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9b84f92c34610224f9c4df68f29a3786, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7764706}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,32 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4573cece111b5314389348bf0c3b979a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1930677468063670239
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3147142359729435044}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
-  m_EdgeRadius: 0
 --- !u!114 &5762589847869764873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,12 +125,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hexs: []
-  check1: 0
-  check2: 0
-  check3: 0
   match: 0
   firsttime: 0
---- !u!50 &2237054087300105793
+--- !u!58 &984691934817175097
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147142359729435044}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
+--- !u!50 &-471387281809646332
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -175,5 +162,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0

@@ -19,14 +19,11 @@ public class hex_identity : MonoBehaviour
     game_status gs;
     void Start()
     {
+        
         gs = GameObject.FindGameObjectWithTag("game_status").GetComponent<game_status>();
         InstantiatePiece();
         PickID();
-        foreach (Transform child in transform)
-        {
-            Dots.Add(child.gameObject);
-        }
-        
+      
     }
 
    
@@ -35,37 +32,57 @@ public class hex_identity : MonoBehaviour
         
         Int32.TryParse(gameObject.name, out name);
         p_parent = transform.parent.gameObject;
-        CheckEdges();
+        RePosition();
         tile_Text.text = p_parent.name;
         gameObject.name = p_parent.name;
         PickColor();
-        RePosition();
-        if (name % 10 != 0)
+        if (gs.is_filling)
         {
-            nextPos = GameObject.Find((name - 1).ToString()).gameObject;
+         // StartCoroutine(swipe());
         }
-    }
 
+
+    }
+    //all hex's pick a id for itself
     void PickID() {
         hex_id = Random.Range(0, 6);
         PickColor();
     }
+    //all hex's pick a color for its id
     void PickColor() {
         hex_sprite.color = colors[hex_id];
     }
-    void CheckEdges() { 
-    
-    }
-    void ChangeColor() { 
-    
-    }
-    void RePosition() {
-        if (gs.is_matched)
+   
+    /*
+    IEnumerator swipe() {
+        if (name % 10 != 0)
         {
-            transform.rotation = p_parent.transform.rotation;
-            transform.position = p_parent.transform.position;
+            yield return new WaitForSeconds(.3f);
+            nextPos = GameObject.Find((name - 1).ToString()).gameObject;
+            yield return new WaitForSeconds(.3f);
+            if(nextPos.GetComponent<grid_tile>().empty == false)
+            {
+                RePosition();
+            }
+            if (nextPos.GetComponent<grid_tile>().empty == true && gs.is_filling == true)
+            {
+                transform.position = Vector3.Lerp(transform.position, nextPos.transform.position, 30f * Time.deltaTime);
+            }
+            
         }
     }
+    */
+
+    //Reposition hex's after is a match 
+    public void RePosition() {
+        if (gs.is_matched)
+        {
+            transform.rotation = transform.parent.transform.rotation;
+            transform.position = transform.parent.transform.position;
+
+        }
+    }
+    //Instantiate 6 dots for 6 corners in hexs
     void InstantiatePiece()
     {
         float angle = 360f / 6f;
@@ -74,18 +91,26 @@ public class hex_identity : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(i * angle, Vector3.forward);
             Vector3 direction = rotation * Vector3.right;
             Vector3 position = transform.position + (transform.forward * -2f) + (direction * 0.68f);
-            Transform piecee = Instantiate(dot, position, rotation);
-            piecee.parent = this.transform;
-            piecee.name = piecee.eulerAngles.z.ToString();
+            Transform piece = Instantiate(dot, position, rotation);
+            piece.parent = this.transform;
+            piece.name = piece.eulerAngles.z.ToString();
             
         }
     }
-    private void OnTriggerEnter2D(Collider2D coll)
+    //If Hex hits the any tile it will be their child
+    void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "tile")
+        if (!gs.is_selector_active)
         {
-            transform.parent = coll.gameObject.transform;
+            if (coll.gameObject.tag == "tile")
+            {
+                transform.parent = coll.gameObject.transform;
+
+            }
         }
+        
     }
+   
+    
 
 }

@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class match_detector : MonoBehaviour
 {
     public List<GameObject> hexs;
-    public int check1,check2,check3;
+    
     public bool match,firsttime;
     game_status gs;
    
@@ -17,42 +19,39 @@ public class match_detector : MonoBehaviour
     void Start()
     {
         firsttime = true;
-        Invoke("FirstCheck", 0.15f);
+        Invoke("FirstCheck", 0.4f);
         
         gs = GameObject.FindGameObjectWithTag("game_status").GetComponent<game_status>();
         
 
     }
-    /*
-     * for (int i = 0; i < 3; i++)
-        {
-            if (hexs[i] = null)
-            {
-                hexs.Remove(hexs[i]);
-            }
-        }
-     */
+  
 
     void Update()
     {
-        FindMatch();
-        if (match && gs.is_selector_rotating == false) {
-            gs.is_matched = true;
-            Invoke("DestroyHexs", 0.3f);
-            AfterDestroy();
-            match = false;
-
-
-
-        }
-        if (!gs.is_selector_rotating) {
-           
-        }
-        if(hexs.Count != 3)
+        //looking for matches
+        if (gs.is_filling == false)
         {
-            gameObject.GetComponent<spawn_selector>().enabled = false;
+            if (gs.is_selector_rotating == false)
+            {
+                FindMatch();
+            }
+            if (match && gs.is_selector_rotating == false)
+            {
+                gs.is_matched = true;
+                Invoke("DestroyHexs", 0.4f);
+
+            }
+
+        //if there is 3 connection point spawn selector or not
+            if (hexs.Count != 3)
+            {
+                gameObject.GetComponent<spawn_selector>().enabled = false;
+            }
+            else {
+                gameObject.GetComponent<spawn_selector>().enabled = true;
+            }
         }
-       
     }
 
 
@@ -60,34 +59,34 @@ public class match_detector : MonoBehaviour
 
         if (hexs.Count == 3)
         {
-            check1 = hexs[0].GetComponent<hex_identity>().hex_id; 
-            check2 = hexs[1].GetComponent<hex_identity>().hex_id; 
-            check3 = hexs[2].GetComponent<hex_identity>().hex_id;
-         
-                if (check1 == check2 && check2 == check3)
+                if (hexs[0].GetComponent<hex_identity>().hex_id == hexs[1].GetComponent<hex_identity>().hex_id && hexs[1].GetComponent<hex_identity>().hex_id == hexs[2].GetComponent<hex_identity>().hex_id)
                 {
-                if (firsttime)
-                {
-                    hexs[0].GetComponent<hex_identity>().hex_id = Random.Range(0, 6);
-                    hexs[1].GetComponent<hex_identity>().hex_id = Random.Range(0, 6);
-                    hexs[2].GetComponent<hex_identity>().hex_id = Random.Range(0, 6);
-                }
-                else {
-                    match = true;
-                }
+                //in the game starts for never colors matches
+                    if (firsttime)
+                    {
+                        hexs[0].GetComponent<hex_identity>().hex_id = Random.Range(0, 6);
+                        hexs[1].GetComponent<hex_identity>().hex_id = Random.Range(0, 6);
+                        hexs[2].GetComponent<hex_identity>().hex_id = Random.Range(0, 6);
+                    }
+                    else {
+                        match = true;
+                  
+                    }
                     
                 }    
         }
+       
     }
     
     private void OnTriggerEnter2D(Collider2D coll)
     {
+       //finding 3 hex's in dot collider
         if (coll.gameObject.tag == "hex")
         {
             if (hexs.Count < 3)
             {
                 hexs.Add(coll.gameObject);
-               
+              
             }
         }
         if (coll.gameObject.tag == "snap_destroyer") {
@@ -97,24 +96,31 @@ public class match_detector : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D coll)
     {
+        //finding removing hex's in dot collider
         if (coll.gameObject.tag == "hex")
         {        
             hexs.Remove(coll.gameObject);
+
         }
     }
-
+    
     private void DestroyHexs()
     {
+     //if there is matches destroy all hex's  
         match = false;
-        gs.is_selector_active = false;     
+        gs.is_selector_active = false;
         gs.is_selector_reverted = false;
         gs.is_matched = false;
+        gs.Fill();
         Destroy(hexs[0].gameObject);
-        hexs.Remove(hexs[0].gameObject);
+      
         Destroy(hexs[1].gameObject);
-        hexs.Remove(hexs[1].gameObject);
+        
         Destroy(hexs[2].gameObject);
-        hexs.Remove(hexs[2].gameObject);
+        hexs.Clear();
+      
+        
+        
        
 
     }
@@ -122,9 +128,10 @@ public class match_detector : MonoBehaviour
         firsttime = false;
        
     }
-    private void AfterDestroy() {
-        gs.timer();
+    private void FillAgain() {
+       
     }
+   
 
 
 

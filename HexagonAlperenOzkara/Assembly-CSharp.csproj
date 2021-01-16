@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\grid_tile.cs" />
      <Compile Include="Assets\Scripts\hex_identity.cs" />
      <Compile Include="Assets\Scripts\match_detector.cs" />
+     <Compile Include="Assets\Scripts\new_hex_spawner.cs" />
      <Compile Include="Assets\Scripts\selector_collision.cs" />
      <Compile Include="Assets\Scripts\snap_deleter.cs" />
      <Compile Include="Assets\Scripts\spawn_selector.cs" />
